@@ -1,0 +1,99 @@
+<div class="p-3 container">
+  <div class="card">
+    <div class="card-title text-center rounded-bottom-5" style="background-color: #00008f;"><h3 class="p-lg-1 fw-bolder fs-4 text-light">Reservation list</h3></div>
+    <div class="card-body">
+
+      <table class="table">
+
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name Client</th>
+          <th>CIN</th>
+          <th>Id Rom</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Days</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let c of archive">
+          <td>{{c.id}}</td>
+          <td>{{c.client.nom}} {{c.client.prenom}}</td>
+          <td>{{c.client.cin}}</td>
+          <td>{{c.chambre.nb_chambre}}</td>
+          <td>{{c.chambre.prix}}</td>
+          <td>{{c.date_debut}}</td>
+          <td>{{c.nbr_jours}}</td>
+          <td><button  class="btn btn-outline-info" data-bs-toggle="modal" (click)="prendreservation(c)" data-bs-target="#myModal2"><i class="bi bi-building-up"></i></button></td>
+          <td><button (click)="deletearchive(c);updateromfordelete(c);refresh()" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button></td>
+
+
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- popup de update -->
+<div class="modal" id="myModal2">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="p-3 container">
+          <div class="card">
+            <div class="card-title text-center   rounded-bottom-5" style="background-color: #00008f;"><h3 class="p-lg-1 fw-bolder fs-4 text-light">Update reservation</h3></div>
+            <div class="card-body">
+              <div class="row">
+                <h4 class="modal-title text-center fw-bold font-monospace">Edite your information</h4>
+                <div><hr></div>
+                <div class="col-md-6 ">
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form (ngSubmit)="updatearchive(upd);refresh()" #upd="ngForm">
+                    <div class="mb-3">
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label">Start date : </label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control" [(ngModel)]="test.date_debut" name="date_debut">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label">The number of days : </label>
+                        </div>
+                        <div class="col">
+                          <input class="form-control" [(ngModel)]="test.nbr_jours" name="nbr_jours">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-grid">
+                      <button type="submit"  class="btn btn-outline-success" data-bs-dismiss="modal"> Save </button>
+                    </div>
+                  </form>
+                </div>
+                <div><hr></div>
+                <!-- Modal footer -->
+                <div class="d-grid">
+                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

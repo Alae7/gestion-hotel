@@ -1,0 +1,36 @@
+<div class="p-3 container">
+  <div class="card">
+    <div class="card-title text-center   rounded-bottom-5" style="background-color: #00008f;"><h3 class="p-lg-1 fw-bolder fs-4 text-light">Reservation</h3></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="container col-md-10">
+          <form (ngSubmit)="postreservation(res);updaterom(res)" #res="ngForm">
+            <div class="mb-3">
+              <label class="form-label">Select Client</label>
+              <select class="form-select" aria-label="Default select example"[(ngModel)]="test.idClient" name="idClient" >
+                <option *ngFor="let client of client" [value]="client.id">full name : {{client.nom}} {{client.prenom}} and cin : {{client.cin}}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Start date</label>
+              <input class="form-control" placeholder="Start date" [(ngModel)]="test.date_debut" name="date_debut">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">The number of days</label>
+              <input class="form-control" placeholder="number days" [(ngModel)]="test.nbr_jours" name="nbr_jours" >
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Select Rom</label>
+              <select class="form-select" aria-label="Default select example"[(ngModel)]="test.nb_chambre" name="nb_chambre" >
+                <option *ngFor="let c of nr_roms" [value]="c.nb_chambre">price : {{c.prix}}DH et {{c.nb_person}} in rom</option>
+              </select>
+            </div>
+            <div class="d-grid">
+            <button   class="btn btn-success" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
